@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.express as px
-import plotly.graph_objects as go
+import plotly.graph_objects as go # Solo importamos lo que usamos (go)
 from datetime import datetime, timedelta
 import requests
 
@@ -76,8 +75,7 @@ def obtener_temp_real(lat, lon):
         temp_manana = respuesta['daily']['sst_max'][-1]
         return temp_hoy, temp_manana, False # No hay error
     except Exception as e:
-        # --- CAMBIO #1: FALLBACK REALISTA ---
-        # Si falla el satélite, usamos datos de Guayaquil (26°C) y no de crisis (23°C)
+        # Si falla el satélite, usamos datos de Guayaquil (26°C)
         return 26.0, 26.5, True # Hay error, pero es un fallback normal
 
 
